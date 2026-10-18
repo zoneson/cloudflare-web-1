@@ -4,4 +4,13 @@ cat > ../.gitignore << 'EOF'
 node_modules/
 .wrangler/
 .DS_Store
+
+# Secrets: never upload these
+.env
+.env.*
+.dev.vars
+.dev.vars.*
+
+# Logs
+npm-debug.log*
 EOF
