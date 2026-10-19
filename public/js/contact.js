@@ -13,11 +13,24 @@ function showFieldErrors(errors = {}) {
   if (errors.form) say(errors.form);
 }
 
-function showFallback() {
+/* On a phone the first bad field can be off-screen; move the visitor to it. */
+function showRejected(errors) {
+  showFieldErrors(errors);
+  const first = form.querySelector(".field-error:not(:empty)");
+  if (!first) return;
+  say("Please check the highlighted fields.");
+  form.querySelector(`[name="${first.dataset.for}"]`).focus();
+}
+
+function mailtoLink() {
   const link = document.createElement("a");
   link.href = "mailto:zoneson@gmail.com";
   link.textContent = "zoneson@gmail.com";
-  say("Sorry, sending failed. Please email me directly at ", link, ".");
+  return link;
+}
+
+function showFallback() {
+  say("Sorry, sending failed. Please email me directly at ", mailtoLink(), ".");
 }
 
 function showThanks() {
@@ -29,8 +42,9 @@ function showThanks() {
 }
 
 const ON_STATUS = {
-  400: (body) => showFieldErrors(body.errors),
-  403: () => say("Please complete the check and try again."),
+  400: (body) => showRejected(body.errors),
+  /* The check may be blocked by a privacy extension, so always offer a way out. */
+  403: () => say("Please complete the check and try again, or email me directly at ", mailtoLink(), "."),
 };
 
 function collect() {

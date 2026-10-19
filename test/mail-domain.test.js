@@ -71,3 +71,13 @@ test("queries cloudflare-dns.com with accept: application/dns-json", async () =>
   assert.equal(url.searchParams.get("name"), "example.com");
   assert.equal(new Headers(init.headers).get("accept"), "application/dns-json");
 });
+
+test("true when DNS hangs past the timeout", async () => {
+  let timedOut = false;
+  const hang = (url, init) => new Promise((_, reject) => init.signal.addEventListener("abort", () => {
+    timedOut = init.signal.reason?.name === "TimeoutError";
+    reject(init.signal.reason);
+  }));
+  assert.equal(await canReceiveMail("example.com", hang), true);
+  assert.equal(timedOut, true);
+});

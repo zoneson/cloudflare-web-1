@@ -53,3 +53,28 @@ test("throws on a non-OK siteverify response", async () => {
   const fetchFn = async () => new Response("bad gateway", { status: 502 });
   await assert.rejects(verifyTurnstile("tok", "sec", null, fetchFn));
 });
+
+function fakeSiteverifyErrors(errorCodes) {
+  return async () => Response.json({ success: false, "error-codes": errorCodes });
+}
+
+test("throws without calling fetch when the secret is missing", async () => {
+  const api = fakeSiteverify(true);
+  await assert.rejects(verifyTurnstile("tok", undefined, null, api.fetchFn), /secret/i);
+  assert.equal(api.calls.length, 0);
+});
+
+test("throws on configuration error codes instead of blaming the visitor", async () => {
+  for (const code of ["missing-input-secret", "invalid-input-secret", "invalid-input-response"]) {
+    await assert.rejects(verifyTurnstile("tok", "sec", null, fakeSiteverifyErrors([code])), new RegExp(code));
+  }
+});
+
+test("false for an expired or reused token", async () => {
+  assert.equal(await verifyTurnstile("tok", "sec", null, fakeSiteverifyErrors(["timeout-or-duplicate"])), false);
+});
+
+test("gives up on a hanging siteverify after the timeout", async () => {
+  const hang = (url, init) => new Promise((_, reject) => init.signal.addEventListener("abort", () => reject(init.signal.reason)));
+  await assert.rejects(verifyTurnstile("tok", "sec", null, hang), { name: "TimeoutError" });
+});

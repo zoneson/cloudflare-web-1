@@ -2,6 +2,7 @@ const DOH_URL = "https://cloudflare-dns.com/dns-query";
 const RECORD_TYPE = { MX: 15, A: 1, AAAA: 28 };
 const NOERROR = 0;
 const NXDOMAIN = 3;
+const TIMEOUT_MS = 3000;
 
 /*
  * Returns the answer data for one record type. Answers are filtered by type
@@ -11,7 +12,10 @@ const NXDOMAIN = 3;
  */
 async function lookup(domain, type, fetchFn) {
   const url = `${DOH_URL}?name=${encodeURIComponent(domain)}&type=${type}`;
-  const response = await fetchFn(url, { headers: { accept: "application/dns-json" } });
+  const response = await fetchFn(url, {
+    headers: { accept: "application/dns-json" },
+    signal: AbortSignal.timeout(TIMEOUT_MS),
+  });
   if (!response.ok) throw new Error(`DoH HTTP ${response.status}`);
   const body = await response.json();
   if (body.Status !== NOERROR && body.Status !== NXDOMAIN) throw new Error(`DoH status ${body.Status}`);
