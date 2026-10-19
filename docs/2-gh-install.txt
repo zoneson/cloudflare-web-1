@@ -1,0 +1,19 @@
+I installed the GitHub CLI: `gh` version 2.102.0 is now at `/usr/local/bin/gh`. It isn't logged in to GitHub yet, and you need to do that step yourself.
+
+Homebrew had to build it from source because your macOS version is older, so the install took about a minute. It also printed a warning about that; it's normal for older macOS and doesn't affect `gh`.
+
+**Next step: log in.** Logging in opens your browser, so type this in the prompt here:
+
+```
+! gh auth login
+```
+
+When it asks, choose:
+1. **GitHub.com**
+2. **HTTPS**
+3. **Yes** to "Authenticate Git with your GitHub credentials"
+4. **Login with a web browser**. It shows a one-time code; paste the code into the page that opens and approve.
+
+Once you're logged in, run `! gh auth status` and you should see "Logged in to github.com account …".
+
+After that, restart Claude Code (`/exit`, then `claude`) so the `github-workflow` skills load. Then you can ask "commit my changes" or "open a pull request".

@@ -1,0 +1,17 @@
+Here are the main ways to copy output from Claude Code on a Mac:
+
+**1. `/copy`: copy my last reply**
+Type `/copy` and press Enter. My most recent response goes to your clipboard as Markdown, and you can paste it anywhere with **Cmd+V**.
+
+**2. Select with the mouse**
+Click and drag over the text in the terminal, then press **Cmd+C**.
+- If dragging doesn't highlight anything (some terminals send mouse clicks to the app instead), hold **Option** (in iTerm2 or Terminal.app) or **Shift** (in some other terminals) while you drag.
+- Long lines are sometimes split by the terminal's wrapping, so pasted text can have extra line breaks.
+
+**3. `/export`: save the whole conversation**
+Type `/export`. You can copy the full conversation to the clipboard or save it as a text file. This is useful for keeping notes from a session.
+
+**4. Ask me to write it to a file**
+If you want something like a command list or a plan saved, just ask (for example, "save that to notes.md"). I'll create the file and you can open or copy it whenever you like. Since your project publishes everything in `public/`, I'd put notes somewhere else, like the project root.
+
+**Tip:** `/copy` is usually the quickest choice. It also keeps code blocks and formatting clean, which mouse selection doesn't always do.

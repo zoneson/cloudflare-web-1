@@ -1,0 +1,51 @@
+I've built your one-page profile site with three styles to choose from, and checked all three in a browser at phone and desktop width. The cut-off look in my first phone screenshot came from the screenshot tool (headless Chrome won't go narrower than about 500px), not your page. Inside real phone-width frames all three fit with nothing sticking out.
+
+**See the three styles side by side:** open http://localhost:8799/preview.html. A small local preview server is still running on your Mac for this. Each phone frame has an "Open full page" link for the big-screen view.
+
+| Style         | Look                                         | Feels                          |
+| ------------- | -------------------------------------------- | ------------------------------ |
+| **A · Clean** | White, one blue color, left-aligned          | Professional, trustworthy      |
+| **B · Bold**  | Dark background, bright lime, heavy headings | Modern, confident, a bit techy |
+| **C · Warm**  | Cream background, elegant headings, centered | Friendly, personal             |
+
+## What I changed
+
+- **`public/index.html`**: the whole site. The sections are: intro, three key numbers, about me, what I can help with, selected projects, what people say, and contact. All the text is sample text (it says "Your Name" and has a made-up job and projects) for you to replace with your own.
+- **`public/css/base.css`**: the layout, shared by all three styles.
+- **`public/css/theme-clean.css`, `theme-bold.css`, `theme-warm.css`**: each one only sets colors, fonts, roundness and alignment. Switching style never touches your text or layout.
+- **`public/preview.html`**: the side-by-side comparison page. I'll delete it once you've chosen.
+- **`public/favicon.svg`**: the small icon shown on the browser tab.
+
+**Why it loads fast:** there are no frameworks and no downloaded fonts (it uses fonts already on the visitor's device). The images are just the small icon, so the whole page is a few kilobytes.
+
+## What the best personal sites have that your request didn't mention
+
+I compared it against well-known personal sites from designers, developers and consultants. These are the gaps, and the page already covers them:
+
+1. **A one-sentence promise right at the top.** Say who you help and what you do for them, not just your job title. Visitors decide within a few seconds whether to keep reading.
+2. **A clear next step.** The "Get in touch" button is at the top and again at the bottom.
+3. **Proof, not just claims.** There are numbers ("10+ years"), a result for every project ("32% more orders"), and quotes from real people.
+4. **Availability.** "Open to new projects starting in December" tells people whether it's worth reaching out.
+5. **How fast you reply.** "I usually reply within one working day."
+6. **Link previews.** The page includes the hidden information that makes your link show a title, description and picture when shared on WhatsApp or LinkedIn.
+7. **A downloadable résumé** and links to your social profiles.
+
+## What I need from you
+
+1. **Pick A, B or C.** I'll lock that style in and remove the preview page and the style-switching code.
+2. **Send your real details:** name, a one-line description of what you do, a short bio, 3–4 skills, 2–3 projects with results, 1–2 quotes, email, and links. Also send a photo (I'll put it where the initials are now) and your résumé as a PDF.
+3. **Two links don't work yet.** `/resume.pdf` and the link-preview picture `/images/share.png` (a 1200×630 image) don't exist until you give me those files.
+
+## Worth considering later
+
+- **Free visitor counts:** Cloudflare Web Analytics, which needs no cookie banner.
+- **A contact form** instead of an email link. This needs a small Worker (a bit of code that runs on Cloudflare), so I left it out of the first version.
+- **Your own domain name**, such as yourname.com.
+
+## Taste check
+
+- **Special cases:** the three styles don't need any branches in the code. Each style file just sets the same variables (named color and font settings) that the layout reads.
+- **Indentation:** no code is more than three levels deep.
+- **Built "for the future":** the only extra is the style-switching script, and it gets deleted once you pick.
+
+Nothing is committed or deployed. I'll ask before doing either.

@@ -1,0 +1,279 @@
+Partner — I've added all three requirements to the design. Your list starts at **2**, though; if there's a requirement **1**, paste it and I'll add it too.
+
+**Requirement 2, three styles with previews.** They're in the browser now (refresh the same tab): http://localhost:64318/?key=1e3ea5f7e31dbe4feb29978ffa1d375bc2adac8b0f506c21280050bcdf5bc907
+- **A · Clean:** white with a blue accent. Calm and professional.
+- **B · Engineer:** dark with a green accent and a slight command-line feel. Speaks to network engineers.
+- **C · Consultant:** navy and gold with elegant headings. Feels senior; aimed at the managers who approve contracts.
+
+Each one shows the Person-first top of the page at phone width.
+
+**Requirement 3, phone-friendly, fast, no jargon.** These become hard rules in the design:
+- It's built for phones first.
+- No frameworks and no downloaded fonts, so the page is a few kilobytes.
+- When I explain things to you, I use plain words.
+
+On the page itself, networking terms like PicOS, ONIE and ZTP stay, because your customers search for exactly those words. Everything else is written in plain English.
+
+**Requirement 4, gaps compared with strong independent-consultant sites.** This list comes from what I know of strong sites in this space; I haven't searched the web. Say so if you want a live search.
+
+| #   | Gap                                                                                                                   | Why it matters                                                                                                      | Needs from you               |
+| --- | --------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ---------------------------- |
+| 1   | **How engagements work**: e.g. a free 30-minute first call, remote or on-site, hourly or fixed price                  | Customers hesitate when they can't tell what working with you looks like                                            | Your terms                   |
+| 2   | **Your own domain and email**, e.g. `yourname.com` and `hello@yourname.com`                                           | A Gmail address looks less established to business buyers. Cloudflare can forward the new address to Gmail for free | Domain choice (about $10/yr) |
+| 3   | **Anonymized case studies with numbers**, e.g. "40 switches, from unboxed to production in 2 hours instead of 3 days" | Numbers persuade engineers more than adjectives do                                                                  | Real figures                 |
+| 4   | **Credentials**: years in networking, certifications, other vendors you know                                          | Shows you're more than one product                                                                                  | Your list                    |
+| 5   | **One public technical sample**: a short ZTP write-up or a cleaned-up Ansible example on GitHub                       | The strongest proof for engineers. It must contain no Pica8 or customer code                                        | Your OK                      |
+| 6   | **Where you are and when you're available**: time zone (Pacific), working hours, languages                            | Customers abroad need to know whether you overlap with their working day                                            | Languages, hours             |
+| 7   | **Not-affiliated line and trademark note**                                                                            | Protects you from looking like you're impersonating Pica8                                                           | — (I'll write it)            |
+| 8   | **A short privacy note under the form**: "used only to reply to you"                                                  | Business customers are cautious about forms                                                                         | —                            |
+| 9   | **LinkedIn link, link previews, Google-friendly title** like "PicOS & ZTP consultant"                                 | How customers will find you and judge you                                                                           | LinkedIn URL                 |
+| 10  | **Visitor counts** with Cloudflare Web Analytics, which is free and needs no cookie banner                            | Tells you whether the site is bringing anyone in                                                                    | —                            |
+
+Which of the three styles do you like?
+
+-----------------------------------------
+Partner — C · Consultant it is: navy and gold, elegant headings. I've parked the gaps. The design will list them as "later", and the page will show clearly marked placeholders where your real details go. I won't invent any.
+
+**Size:** this is a full project. It has a page, a form backend, spam protection, email delivery and a deployment. So next I'll write a design document, and once you approve it I'll turn it into a step-by-step build plan. I'll build on what's already in `public/`: the layout file stays, a new navy-and-gold style replaces the three sample styles, and the style-picker page goes away.
+
+There's one thing I can't decide for you, because the form depends on it. **To send email, Cloudflare needs a domain name you own,** e.g. `yourname.com`. Cloudflare's built-in email sending only works from an address on your own domain. Without one, the form has to go through an outside email company, which is one more account and one more thing that can break.
+
+With a domain (about $10 a year, and you can buy it from Cloudflare), you get:
+- form emails that come from your own domain, delivered to zoneson@gmail.com
+- `https://yourname.com` instead of `zc-website-1.<something>.workers.dev`
+- free forwarding of `hello@yourname.com` to your Gmail, which covers gap #2
+
+Are you willing to buy a domain for this, and do you have a name in mind?
+
+-----------------------
+Partner — `zoneson.net` it is. It's about $10–12 a year at Cloudflare; check that it's available when you buy it. Here's the rest of the project as I understand it. Anything marked *(my call)* is a decision I made that you can overrule.
+
+**The page.** It's a single page, written in English, styled C · Consultant (navy and gold), with the B · Person-first top. The sections in order:
+1. Photo, name, "Former Pica8 Solution Engineer, now independent", one line on what you help with, and a contact button.
+2. Areas of expertise: Pica8 products (PicOS, AmpCon), ONIE, Zero Touch Provisioning, Ansible.
+3. Key projects, with no customer names. The data-center ZTP + Ansible rollout is the lead one.
+4. The contact form.
+5. A footer with the "independent, not affiliated with Pica8" line.
+
+Anything you haven't given me yet, such as your name, photo, project numbers and engagement terms, appears as a clearly marked placeholder. *(my call)* The gap list is parked for later.
+
+**The form.** It has the fields you approved. Turnstile blocks robots. The address check rejects `noreply@`-style addresses and domains that can't receive mail. You receive each request at zoneson@gmail.com with Reply-To set to the customer's address. *(my call)* If sending fails, the customer sees your email address so the request isn't lost.
+
+**How it's built** *(my call)*:
+- Plain HTML and CSS, as now.
+- One small Worker file that handles the form; the rest of the site stays static.
+- Cloudflare's built-in email sending, from an address like `form@zoneson.net`.
+- No new packages beyond Wrangler, which you already use.
+
+**Going live.**
+1. You buy `zoneson.net` on Cloudflare.
+2. You turn on Email Routing and verify zoneson@gmail.com.
+3. I connect the domain to the Worker.
+4. I preview everything locally first, and deploy only when you say so.
+
+**Out of scope for now:** extra pages, a blog, other languages, the confirmation-link check, analytics.
+
+What's wrong or missing before I write this up as the design document?
+
+------------------------
+Partner — the reviewer finished. I settled three of its four points myself and wrote them into the design:
+
+- **No preview copy of the site online.** The site doesn't go public until `zoneson.net`, email sending and the robot check are all set up. After launch I'll also switch off the free `workers.dev` address, so nobody finds a copy of the site where the form can't work.
+- **The email check is less strict.** Some real company domains can receive mail even without the usual mail-server setting in their DNS records. The check now accepts those, so a real customer is never turned away by mistake.
+- **All three mockups you approved are now part of the design:** the Person-first top of the page, the contact form with its inbox email, and the Consultant style.
+
+Only you can answer the last point. The page currently shows `[[Your Name]]` and other placeholders where your name, photo, About text and project numbers go. A customer who sees "[[Your Name]] — PicOS consultant" on the live site will lose trust immediately.
+
+Should going live wait until you've given me your real name, photo, About text and the numbers for the ZTP project, and what name do you want on the page?
+
+---------------------
+Partner — the design is ready for you to approve:
+
+`docs/superpowers/specs/2026-10-18-consultant-profile-site-design.md`
+
+**Your name and photo.** The design now uses "Zoneson Chen" everywhere. I looked at your photo: a portrait at the lake, head and shoulders, which works well. The site will use a copy that is:
+- cropped square around your face;
+- shrunk from 2.4 MB to under 60 KB;
+- stripped of hidden data. Phone photos can record the GPS location where they were taken, and that shouldn't go on a public website.
+
+Your original photo stays where it is and never goes into the project.
+
+**Decisions I made, for you to check while reading:**
+1. **One project card for now.** The site shows only the ZTP + Ansible card; the empty project cards 2 and 3 are left off until you have more.
+2. **Placeholders get one last check before going live.** Before we go live, I'll show you every `[[…]]` placeholder still on the page, such as the About text and the project numbers. You then decide whether to fill them in or go live anyway.
+3. **The site stays offline until everything works.** The public site goes up only once `zoneson.net`, the email sending and the robot check are all ready. The free `workers.dev` copy of the site is switched off at the same time.
+4. **The email check accepts all mail-capable domains.** A domain with no mail-server entry but a plain website address is still accepted, because email can still be delivered there.
+5. **Email is built in.** Form emails are sent with Cloudflare's own email feature, so nothing new has to be installed.
+6. **A Worker handles the form.** The form is handled by one small file, `src/worker.js`. It comes with tests that use the testing tool already built into Node.
+7. **Old files get deleted, with your OK.** The three sample styles and `preview.html` get deleted. I'll ask you again at the moment of deleting.
+
+Nothing has been built, committed or deployed. Once you approve, I'll commit this document and write the step-by-step build plan.
+
+Do you approve the design as written, or is there anything to change?
+
+-------------------
+Partner — I've committed the approved design (`f1a99a6`) and written the build plan. The plan isn't committed yet:
+
+`docs/superpowers/plans/2026-10-18-consultant-profile-site.md`
+
+**The 8 steps:**
+1. **Form checks:** required fields, length limits, and the `noreply@` rejection.
+2. **Mail-domain check:** confirms the customer's email domain can actually receive mail.
+3. **Robot check:** verifies the Turnstile result with Cloudflare.
+4. **The email you receive:** subject, Reply-To and body. It's built so Chinese or accented names display correctly. It's also built so text typed into a field can't add extra recipients to the email.
+5. **Receiving the form:** the small Worker program that takes form submissions, wired into `wrangler.jsonc` and tried locally.
+6. **The page itself:** content, navy-and-gold style, and your cropped photo. I'll ask you before deleting the old sample files.
+7. **Form behaviour in the browser:** thank-you message, error messages next to each field, the email fallback, and protection against double-clicking Send.
+8. **Going live on `zoneson.net`:** the steps you do yourself (buy the domain, turn on email, set up the robot check) are marked ★. I'll ask before deploying.
+
+Steps 1–5 each come with automated tests that use the testing tool already built into Node, so nothing new gets installed.
+
+**How should I build it?**
+- **Native:** I build all 8 steps myself in this session, then one fresh reviewer checks the whole result at the end. Cheaper and faster.
+- **Subagent-driven:** a fresh helper builds each step, and a separate reviewer checks it before the next step starts. More thorough, but costs a lot more.
+
+I recommend **Native**. The steps hand very little to each other, and the plan already spells out every name they share. The riskiest part, losing a customer request, is covered by the automated tests in steps 1–5 and the live test in step 8.
+
+Does the plan cover what you want, and should I build it Native or Subagent-driven?
+
+------------------------
+Partner — steps 1–7 are built, reviewed, fixed and committed on the branch `feat/consultant-site`. All 47 automated tests pass, and so do 6 checks that run the form in a real browser. Nothing has been deployed, and nothing is merged into `main` yet.
+
+**What you have now**
+- **The page.** Your name, your photo (cropped, and with the GPS location removed) and the navy-and-gold style. It has the About, Expertise and Projects sections, the contact form, and the "not affiliated with Pica8" footer. It works at phone width (320 px and up) and on desktop. The text and styles add up to about 20 KB.
+- **The form.** It rejects robots, `noreply@` addresses and domains that can't receive mail. You get each request at zoneson@gmail.com, and hitting Reply answers the customer directly.
+  - I tested it locally: Cloudflare's local test mode created the real email file with the correct sender, Reply-To, subject and body.
+  - Real delivery to Gmail can only be tested after going live.
+
+**What the reviewer caught, and what I fixed**
+1. **Setup mistakes were blamed on the visitor.** If the robot-check keys are ever set up wrong at go-live, every customer would be told "complete the check" forever, and the request would be lost without anyone noticing. Now they get "sending failed — email me directly", and the error is logged.
+2. **A blocked robot check had no way out.** If a privacy extension blocks the robot check, the visitor now also gets your email link.
+3. **A slow outside service could freeze the form.** If Cloudflare's check or DNS service hangs, the form now gives up after a few seconds and shows the email fallback. Before, the Send button stayed disabled.
+4. **Errors could be off-screen.** On a phone, a field error could be below the visible part of the screen. The form now says "Please check the highlighted fields." and jumps to the first one.
+
+**Decisions I made, and what each costs if wrong**
+- **Branch instead of a separate working copy.** I worked on the branch in place rather than in a separate copy of the project, because the starting sample site was never committed. Cost if wrong: none.
+- **Photo crop and cleanup.** I cropped the photo myself and removed all hidden data by re-saving through BMP. Cost if wrong: you might want a different crop.
+- **About text.** I wrote it from what you told me, with `[[…]]` placeholders for years at Pica8, earlier career, languages and on-site travel. Cost if wrong: you reword two sentences.
+- **Form width on small phones.** On 320 px phones, the robot-check box is 300 px wide and sits 12 px wider than the form fields. It still doesn't cause sideways scrolling. Cost if wrong: purely cosmetic.
+- **Links in navy.** Links are navy rather than gold, because gold text on the off-white background is too hard to read. Cost if wrong: none.
+- **The robot check always resets.** It resets after every failed attempt, not only robot failures, because each robot-check result can only be used once. Cost if wrong: the box refreshes once more than needed.
+- **The "failed robot check" browser test was simulated.** I faked the server's reply instead of running the server with failing keys. The server side has its own automated tests. Cost if wrong: that path hasn't been tried end to end in a browser.
+- **Two review findings ranked higher than the reviewer did.** I treated "no timeouts" and "no message on field errors" as fix-now items instead of minor ones, because both could make a customer give up. Cost if wrong: a few lines of code.
+
+**Left for later (minor)**
+- Hand-crafted requests that skip the page can still send odd email addresses. The browser blocks these for normal visitors.
+- `zoneson.net` is written in two places in the code.
+- The robot check doesn't confirm which website the answer came from.
+
+**What's left before going live**
+1. **Delete the old sample files?** These are `public/preview.html` and the three sample style files `theme-clean.css`, `theme-bold.css` and `theme-warm.css`. Nothing uses them any more, but they would still be published if left in.
+2. **Your ★ tasks, when you're ready:**
+   - buy `zoneson.net`;
+   - turn on Email Routing and verify zoneson@gmail.com;
+   - create a Turnstile widget in **Managed** mode for `zoneson.net` and `localhost`;
+   - send me the site key, and run `! npx wrangler secret put TURNSTILE_SECRET` yourself.
+   After that I connect the domain, show you the 4 remaining `[[…]]` placeholders, and ask before deploying.
+
+To see it now, run `npx wrangler dev` and open http://localhost:8787.
+
+May I delete those four old sample files?
+
+-------------------
+Partner — steps 1–7 are built, reviewed, fixed and committed on the branch `feat/consultant-site`. All 47 automated tests pass, and so do 6 checks that run the form in a real browser. Nothing has been deployed, and nothing is merged into `main` yet.
+
+**What you have now**
+- **The page.** Your name, your photo (cropped, and with the GPS location removed) and the navy-and-gold style. It has the About, Expertise and Projects sections, the contact form, and the "not affiliated with Pica8" footer. It works at phone width (320 px and up) and on desktop. The text and styles add up to about 20 KB.
+- **The form.** It rejects robots, `noreply@` addresses and domains that can't receive mail. You get each request at zoneson@gmail.com, and hitting Reply answers the customer directly.
+  - I tested it locally: Cloudflare's local test mode created the real email file with the correct sender, Reply-To, subject and body.
+  - Real delivery to Gmail can only be tested after going live.
+
+**What the reviewer caught, and what I fixed**
+1. **Setup mistakes were blamed on the visitor.** If the robot-check keys are ever set up wrong at go-live, every customer would be told "complete the check" forever, and the request would be lost without anyone noticing. Now they get "sending failed — email me directly", and the error is logged.
+2. **A blocked robot check had no way out.** If a privacy extension blocks the robot check, the visitor now also gets your email link.
+3. **A slow outside service could freeze the form.** If Cloudflare's check or DNS service hangs, the form now gives up after a few seconds and shows the email fallback. Before, the Send button stayed disabled.
+4. **Errors could be off-screen.** On a phone, a field error could be below the visible part of the screen. The form now says "Please check the highlighted fields." and jumps to the first one.
+
+**Decisions I made, and what each costs if wrong**
+- **Branch instead of a separate working copy.** I worked on the branch in place rather than in a separate copy of the project, because the starting sample site was never committed. Cost if wrong: none.
+- **Photo crop and cleanup.** I cropped the photo myself and removed all hidden data by re-saving through BMP. Cost if wrong: you might want a different crop.
+- **About text.** I wrote it from what you told me, with `[[…]]` placeholders for years at Pica8, earlier career, languages and on-site travel. Cost if wrong: you reword two sentences.
+- **Form width on small phones.** On 320 px phones, the robot-check box is 300 px wide and sits 12 px wider than the form fields. It still doesn't cause sideways scrolling. Cost if wrong: purely cosmetic.
+- **Links in navy.** Links are navy rather than gold, because gold text on the off-white background is too hard to read. Cost if wrong: none.
+- **The robot check always resets.** It resets after every failed attempt, not only robot failures, because each robot-check result can only be used once. Cost if wrong: the box refreshes once more than needed.
+- **The "failed robot check" browser test was simulated.** I faked the server's reply instead of running the server with failing keys. The server side has its own automated tests. Cost if wrong: that path hasn't been tried end to end in a browser.
+- **Two review findings ranked higher than the reviewer did.** I treated "no timeouts" and "no message on field errors" as fix-now items instead of minor ones, because both could make a customer give up. Cost if wrong: a few lines of code.
+
+**Left for later (minor)**
+- Hand-crafted requests that skip the page can still send odd email addresses. The browser blocks these for normal visitors.
+- `zoneson.net` is written in two places in the code.
+- The robot check doesn't confirm which website the answer came from.
+
+**What's left before going live**
+1. **Delete the old sample files?** These are `public/preview.html` and the three sample style files `theme-clean.css`, `theme-bold.css` and `theme-warm.css`. Nothing uses them any more, but they would still be published if left in.
+2. **Your ★ tasks, when you're ready:**
+   - buy `zoneson.net`;
+   - turn on Email Routing and verify zoneson@gmail.com;
+   - create a Turnstile widget in **Managed** mode for `zoneson.net` and `localhost`;
+   - send me the site key, and run `! npx wrangler secret put TURNSTILE_SECRET` yourself.
+   After that I connect the domain, show you the 4 remaining `[[…]]` placeholders, and ask before deploying.
+
+To see it now, run `npx wrangler dev` and open http://localhost:8787.
+
+May I delete those four old sample files?
+
+---------------------------
+Partner — I deleted the four sample files and committed that (`502d75d`). First I checked that nothing in the site or the Worker still used them. `public/` now contains only `index.html`, `favicon.svg`, `css/` (2 files), `images/` and `js/`.
+
+With `zoneson.net` bought, two dashboard tasks are left for you, then one command.
+
+**★ 1. Turn on Email Routing.** This is what lets the form send to your Gmail.
+1. Open dash.cloudflare.com → click **zoneson.net** → **Email** → **Email Routing** → **Get started** / **Enable**.
+2. If it offers to add DNS records (MX and TXT), click **Add records**. Cloudflare needs those to handle mail for your domain.
+3. Under **Destination addresses**, add **zoneson@gmail.com**.
+4. Open the verification email in Gmail and click the link. Until you do, the form can't deliver to you.
+5. Optionally, under **Routing rules**, add `hello@zoneson.net` → zoneson@gmail.com. That's the professional address from the gap list, and it's free.
+
+**★ 2. Create the robot check (Turnstile).**
+1. In the dashboard sidebar, open **Turnstile** → **Add widget**.
+2. Name it something like "zoneson.net contact form".
+   1. I named it "zc-widget-1".
+3. Add the hostnames **zoneson.net** and **localhost**.
+4. Set **Widget mode** to **Managed**.
+5. Create it. You'll see a **Site key** and a **Secret key**.
+
+**★ 3. Store the secret.** Type this in this prompt; the `!` runs it right here:
+
+```
+! npx wrangler secret put TURNSTILE_SECRET
+```
+
+Paste the **Secret key** when it asks. I never see it, and it never goes into the website files. If the command complains that the Worker doesn't exist yet, tell me; we'll store the secret right after the first deploy instead.
+
+When you've done 1 and 2, send me the **Site key**. Unlike the secret, it's meant to be public. I'll then put it in the page and connect `zoneson.net` to the site. I'll also switch off the free `workers.dev` address and show you the 4 remaining `[[…]]` placeholders. After that I'll ask before deploying.
+
+--------------------------
+Partner — that didn't store what we need, and the secret key is now exposed. Here's what happened:
+
+- In `wrangler secret put <NAME>`, the word after `put` is the secret's **name**, not its value. Wrangler then asks for the value separately.
+- So this created a secret *named* `0x4AAAAAAFbLQkb_mTmD413PqvIGzLV8oFQ`, holding whatever you typed at the prompt. `TURNSTILE_SECRET` is still not set.
+- At 35 characters, that `0x4AAAA…` string looks like your Turnstile **Secret key**. Site keys are shorter. It's now visible in this conversation, in your shell history, and as a secret name in the Cloudflare dashboard. Treat it as leaked.
+
+To fix it, in this order:
+
+1. **Get a new secret.** Dashboard → **Turnstile** → your widget → **Settings** → **Rotate secret key**. The old one stops working. The **Site key** stays the same.
+2. **Remove the wrongly named secret:**
+   ```
+   ! npx wrangler secret delete 0x4AAAAAAFbLQkb_mTmD413PqvIGzLV8oFQ
+   ```
+   Answer `y` when it asks.
+3. **Store the new secret under the right name.** Type the command exactly as written, with no key on the line:
+   ```
+   ! npx wrangler secret put TURNSTILE_SECRET
+   ```
+   When it says "Enter a secret value", paste the **new** Secret key and press Enter.
+4. **Send me the Site key** (the shorter one). That one is safe to share.
+
+The upload also shows that the Worker `zc-website-1` already exists in your Cloudflare account, so step 3 will work.
+
+Once I have the Site key, and you've confirmed Email Routing is on and zoneson@gmail.com is verified, I'll do the wiring and ask you before deploying.
