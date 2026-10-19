@@ -3,149 +3,161 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Your Name — Engineer</title>
-  <meta name="description" content="I help small teams turn messy ideas into simple products people enjoy using.">
+  <title>Zoneson Chen — PicOS & Zero Touch Provisioning consultant</title>
+  <meta name="description" content="Former Pica8 Solution Engineer, now independent. I help Pica8 customers deploy, automate and troubleshoot PicOS switches.">
 
   <!-- What shows up when someone shares your link on WhatsApp, LinkedIn, X, etc. -->
-  <meta property="og:title" content="Your Name — Engineer">
-  <meta property="og:description" content="I help small teams turn messy ideas into simple products people enjoy using.">
+  <meta property="og:title" content="Zoneson Chen — PicOS & Zero Touch Provisioning consultant">
+  <meta property="og:description" content="Former Pica8 Solution Engineer, now independent. I help Pica8 customers deploy, automate and troubleshoot PicOS switches.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="/images/share.png">
-  <meta name="twitter:card" content="summary_large_image">
 
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/css/base.css">
-  <link id="theme" rel="stylesheet" href="/css/theme-clean.css">
-  <!-- Preview only: index.html?style=bold swaps the theme. Delete once a style is chosen. -->
-  <script>
-    var style = new URLSearchParams(location.search).get('style');
-    if (style) document.getElementById('theme').href = '/css/theme-' + style + '.css';
-  </script>
+  <link rel="stylesheet" href="/css/theme-consultant.css">
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <script src="/js/contact.js" defer></script>
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="#top">Your Name</a>
+    <a class="brand" href="#top">Zoneson Chen</a>
     <nav>
       <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#work">Work</a>
+      <a href="#expertise">Expertise</a>
+      <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
 
   <main id="top">
     <section class="hero">
-      <div class="photo" aria-hidden="true">ZC</div>
-      <p class="eyebrow">Engineer · Based in Cupertino CA USA</p>
-      <h1>I help small teams turn messy ideas into simple products people enjoy using.</h1>
-      <p class="lead">Ten years of designing apps and websites for startups, schools and local businesses.
-        Currently open to new projects starting in December.</p>
-      <div class="actions">
-        <a class="button" href="#contact">Get in touch</a>
-        <a class="button ghost" href="#work">See my work</a>
+      <div class="hero-head">
+        <img class="photo" src="/images/photo.jpg" alt="Zoneson Chen" width="400" height="400">
+        <div>
+          <h1>Zoneson Chen</h1>
+          <p class="role">Independent network consultant</p>
+        </div>
       </div>
-    </section>
-
-    <section class="stats" aria-label="At a glance">
-      <div><strong>10+</strong><span>years of experience</span></div>
-      <div><strong>40+</strong><span>projects delivered</span></div>
-      <div><strong>3</strong><span>languages spoken</span></div>
+      <p class="lead">Former Pica8 Solution Engineer. I help Pica8 customers deploy,
+        automate and troubleshoot PicOS switches.</p>
+      <div class="actions">
+        <a class="button" href="#contact">Contact me</a>
+      </div>
     </section>
 
     <section id="about">
       <h2>About me</h2>
       <div class="prose">
-        <p>I started out drawing posters for my school club and never stopped. Today I design
-          the screens, buttons and flows that make apps easy to use.</p>
-        <p>I like working closely with founders: we sit down, figure out what really matters to
-          your customers, and build the simplest thing that does it well.</p>
-        <p>Outside work you will find me hiking, cooking for friends, or teaching beginners how
-          to sketch.</p>
+        <p>I was a Solution Engineer at Pica8, working hands-on with customers on PicOS
+          and the rest of the Pica8 product line. [[How many years at Pica8, and what you did before.]]</p>
+        <p>Now I work independently. If you run Pica8 switches, or are thinking about it,
+          I can answer product questions, design the setup with you, and get your network
+          running the way you need.</p>
+        <p>I'm based in Cupertino, California (Pacific time). [[Languages you speak, and whether you travel on-site.]]</p>
       </div>
     </section>
 
-    <section id="skills">
-      <h2>What I can help with</h2>
+    <section id="expertise">
+      <h2>Areas of expertise</h2>
       <div class="grid">
         <article class="card">
-          <h3>App &amp; website design</h3>
-          <p>Clear, good-looking screens that work on every phone and computer.</p>
+          <h3>Pica8 products</h3>
+          <p>PicOS and AmpCon: choosing, configuring and running them in production.</p>
         </article>
         <article class="card">
-          <h3>Making things easier to use</h3>
-          <p>I watch real people use your product and fix where they get stuck.</p>
+          <h3>ONIE &amp; bare-metal installs</h3>
+          <p>Installing the network operating system on open switches straight out of the box.</p>
         </article>
         <article class="card">
-          <h3>Brand look &amp; feel</h3>
-          <p>Logo, colors and fonts that make your business instantly recognizable.</p>
+          <h3>Zero Touch Provisioning</h3>
+          <p>New switches that set themselves up the moment they are plugged in.</p>
         </article>
         <article class="card">
-          <h3>Workshops &amp; coaching</h3>
-          <p>Hands-on sessions that teach your team to design with confidence.</p>
+          <h3>Ansible automation</h3>
+          <p>Playbooks that push consistent configuration to every switch, every time.</p>
         </article>
       </div>
     </section>
 
-    <section id="work">
-      <h2>Selected projects</h2>
+    <section id="projects">
+      <h2>Key projects</h2>
       <div class="projects">
         <article class="project">
-          <p class="tag">Mobile app · 2025</p>
-          <h3>FreshCart grocery app</h3>
-          <p>Customers were giving up halfway through checkout. I cut it from six steps to two.</p>
-          <p class="result">Result: 32% more completed orders in the first month.</p>
-          <a href="#">Read the story →</a>
+          <p class="tag">Data center · Zero Touch Provisioning</p>
+          <h3>Bare-metal switches to production, hands-off</h3>
+          <p>A data-center customer needed new switches brought up without an engineer
+            configuring each one by hand.</p>
+          <p>I combined ONIE to install PicOS automatically, PicOS Zero Touch Provisioning
+            to fetch each switch's setup, and Ansible playbooks to push the production
+            configuration.</p>
+          <p class="result">Result: [[number]] switches from unboxed to production in [[time]],
+            instead of [[time before]].</p>
         </article>
-        <article class="project">
-          <p class="tag">Website · 2024</p>
-          <h3>Riverside Dental clinic</h3>
-          <p>A friendly new website with online booking, so patients stop having to call.</p>
-          <p class="result">Result: half of all bookings now happen online.</p>
-          <a href="#">Read the story →</a>
-        </article>
-        <article class="project">
-          <p class="tag">Workshop · 2023</p>
-          <h3>Design basics for teachers</h3>
-          <p>A two-day course helping 120 teachers make clearer slides and handouts.</p>
-          <p class="result">Result: rated 4.9 out of 5 by attendees.</p>
-          <a href="#">Read the story →</a>
-        </article>
-      </div>
-    </section>
-
-    <section id="kind-words">
-      <h2>What people say</h2>
-      <div class="grid">
-        <blockquote class="quote">
-          <p>“Working with Your Name felt easy from day one. Our customers noticed the difference
-            within a week.”</p>
-          <footer>— Mei Lin, Founder of FreshCart</footer>
-        </blockquote>
-        <blockquote class="quote">
-          <p>“Patient, clear and genuinely kind. Our whole team learned a lot.”</p>
-          <footer>— Dr. Raj Kumar, Riverside Dental</footer>
-        </blockquote>
       </div>
     </section>
 
     <section id="contact" class="contact">
-      <h2>Let’s work together</h2>
-      <p class="lead">Have a project in mind, or just want to say hello? Send me an email —
+      <h2>Get in touch</h2>
+      <p class="lead">Have a question about Pica8, or a network problem to solve?
         I usually reply within one working day.</p>
-      <div class="actions">
-        <a class="button" href="mailto:zoneson@gmail.com">zoneson@gmail.com</a>
-        <a class="button ghost" href="/resume.pdf">Download my résumé</a>
-      </div>
-      <ul class="links">
-        <li><a href="https://www.linkedin.com/in/your-name">LinkedIn</a></li>
-        <li><a href="https://github.com/your-name">GitHub</a></li>
-        <li><a href="https://x.com/your-name">X / Twitter</a></li>
-      </ul>
+
+      <form id="contact-form">
+        <div class="field">
+          <label for="f-name">Name *</label>
+          <input id="f-name" name="name" type="text" autocomplete="name" required maxlength="100">
+          <p class="field-error" data-for="name"></p>
+        </div>
+        <div class="field">
+          <label for="f-email">Work email *</label>
+          <input id="f-email" name="email" type="email" autocomplete="email" required maxlength="254">
+          <p class="field-error" data-for="email"></p>
+        </div>
+        <div class="field">
+          <label for="f-company">Company</label>
+          <input id="f-company" name="company" type="text" autocomplete="organization" maxlength="100">
+          <p class="field-error" data-for="company"></p>
+        </div>
+        <fieldset class="field">
+          <legend>What do you need help with? *</legend>
+          <label class="choice"><input type="radio" name="topic" value="Question about a Pica8 product" required> Question about a Pica8 product</label>
+          <label class="choice"><input type="radio" name="topic" value="ZTP / automation (ONIE, Ansible)"> ZTP / automation (ONIE, Ansible)</label>
+          <label class="choice"><input type="radio" name="topic" value="Troubleshooting"> Troubleshooting</label>
+          <label class="choice"><input type="radio" name="topic" value="Something else"> Something else</label>
+          <p class="field-error" data-for="topic"></p>
+        </fieldset>
+        <div class="field">
+          <label for="f-switches">Switch models &amp; how many</label>
+          <input id="f-switches" name="switches" type="text" maxlength="200" placeholder="e.g. 12 × AS4630, 4 × AS7726">
+          <p class="field-error" data-for="switches"></p>
+        </div>
+        <div class="field">
+          <label for="f-timeline">When do you need this?</label>
+          <select id="f-timeline" name="timeline">
+            <option value="">Not sure yet</option>
+            <option>ASAP</option>
+            <option>This month</option>
+            <option>Just exploring</option>
+          </select>
+          <p class="field-error" data-for="timeline"></p>
+        </div>
+        <div class="field">
+          <label for="f-problem">Describe the problem *</label>
+          <textarea id="f-problem" name="problem" rows="6" required maxlength="5000"></textarea>
+          <p class="field-error" data-for="problem"></p>
+        </div>
+
+        <div class="cf-turnstile" data-sitekey="1x00000000000000000000AA"></div>
+        <button class="button" type="submit">Send request</button>
+        <div id="form-status" role="status"></div>
+        <p class="privacy">Used only to reply to you.</p>
+      </form>
+      <noscript><p>This form needs JavaScript. Please email me at
+        <a href="mailto:zoneson@gmail.com">zoneson@gmail.com</a>.</p></noscript>
     </section>
   </main>
 
   <footer class="footer">
-    <p>© 2026 Your Name · Made with care in Cupertino, CA</p>
+    <p>© 2026 Zoneson Chen · Independent consultant. Not affiliated with or endorsed by
+      Pica8, Inc. Pica8, PicOS and AmpCon are trademarks of their respective owners.</p>
   </footer>
 </body>
 </html>

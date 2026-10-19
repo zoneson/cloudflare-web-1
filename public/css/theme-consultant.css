@@ -1,0 +1,20 @@
+/* Consultant: navy and gold, serif headings, warm off-white page. */
+:root {
+  --bg: #f7f5f0;
+  --surface: #ffffff;
+  --navy: #14213d;
+  --on-navy: #ffffff;
+  --on-navy-muted: #c9cfdb;
+  --bar-bg: rgba(20, 33, 61, .96);
+  --text: #1c2533;
+  --muted: #545c6b;
+  --link: #14213d;
+  --accent: #e0a526;
+  --accent-text: #14213d;
+  --error: #b42318;
+  --border: #e3dccb;
+  --border-strong: #c9bfa8;
+  --radius: 12px;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-head: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+}
