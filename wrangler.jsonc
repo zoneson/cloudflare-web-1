@@ -1,7 +1,14 @@
 {
   "name": "zc-website-1",
+  "main": "src/worker.js",
   "compatibility_date": "2026-10-17",
   "assets": {
-    "directory": "./public"
-  }
+    "directory": "./public",
+    "binding": "ASSETS",
+    // Only the form endpoint runs code; every other path is a static file.
+    "run_worker_first": ["/api/*"]
+  },
+  "send_email": [
+    { "name": "SEND_EMAIL", "destination_address": "zoneson@gmail.com" }
+  ]
 }
