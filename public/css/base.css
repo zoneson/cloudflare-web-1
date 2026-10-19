@@ -1,0 +1,133 @@
+/*
+ * Shared layout. Colors, fonts and shapes come from the theme file,
+ * so switching style never touches this file.
+ */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 17px/1.65 var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--accent); }
+
+h1, h2, h3 {
+  font-family: var(--font-head);
+  line-height: 1.2;
+  margin: 0 0 .5em;
+}
+h1 { font-size: clamp(2rem, 6vw, 3.4rem); letter-spacing: var(--head-spacing); }
+h2 { font-size: clamp(1.5rem, 4vw, 2.1rem); margin-bottom: 1.2em; }
+h3 { font-size: 1.15rem; }
+p  { margin: 0 0 1em; }
+
+main > section {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: clamp(56px, 9vw, 104px) 20px 0;
+}
+
+/* Header */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 20px;
+  background: var(--bar-bg);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+.brand { font-family: var(--font-head); font-weight: 700; color: var(--text); text-decoration: none; }
+.topbar nav { display: flex; gap: clamp(12px, 3vw, 28px); font-size: .92rem; }
+.topbar nav a { color: var(--muted); text-decoration: none; }
+.topbar nav a:hover { color: var(--accent); }
+
+/* Hero */
+.hero { text-align: var(--hero-align); }
+.hero .lead, .hero h1 { max-width: 760px; margin-inline: var(--hero-margin); }
+.photo {
+  display: grid;
+  place-items: center;
+  width: 112px;
+  height: 112px;
+  margin: 0 var(--hero-margin) 28px;
+  border-radius: var(--photo-radius);
+  background: var(--accent);
+  color: var(--accent-text);
+  font: 700 2rem var(--font-head);
+}
+.eyebrow { color: var(--accent); font-weight: 600; font-size: .9rem; letter-spacing: .06em; text-transform: uppercase; }
+.lead { font-size: 1.15rem; color: var(--muted); }
+
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; justify-content: var(--hero-justify); }
+.button {
+  display: inline-block;
+  padding: 13px 24px;
+  border: 2px solid var(--accent);
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: var(--accent-text);
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform .15s;
+}
+.button:hover { transform: translateY(-2px); }
+.button.ghost { background: transparent; color: var(--text); border-color: var(--border-strong); }
+
+/* Numbers strip */
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; text-align: center; }
+.stats strong { display: block; font: 700 clamp(1.8rem, 5vw, 2.6rem) var(--font-head); color: var(--accent); }
+.stats span { font-size: .85rem; color: var(--muted); }
+
+.prose { max-width: 680px; font-size: 1.08rem; }
+
+/* Cards */
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 18px; }
+.card, .project, .quote {
+  margin: 0;
+  padding: 26px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.card p, .quote footer { color: var(--muted); margin: 0; }
+
+.projects { display: grid; gap: 18px; }
+.project .tag { font-size: .82rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; margin-bottom: .4em; }
+.project .result { font-weight: 600; color: var(--text); }
+.project a { font-weight: 600; text-decoration: none; }
+
+.quote p { font-family: var(--font-head); font-size: 1.15rem; }
+.quote footer { font-size: .9rem; }
+
+/* Contact */
+.contact { text-align: var(--hero-align); }
+.contact .lead { max-width: 620px; margin-inline: var(--hero-margin); }
+.links { display: flex; flex-wrap: wrap; gap: 20px; padding: 0; margin: 32px 0 0; list-style: none; justify-content: var(--hero-justify); }
+.links a { color: var(--muted); }
+
+.footer { margin-top: 104px; padding: 28px 20px; border-top: 1px solid var(--border); text-align: center; font-size: .85rem; color: var(--muted); }
+
+@media (min-width: 760px) {
+  .projects { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* On narrow phones, the brand name gives up its space to the menu. */
+@media (max-width: 400px) {
+  .brand { display: none; }
+  .topbar { justify-content: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .button { transition: none; }
+}

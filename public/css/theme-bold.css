@@ -1,0 +1,20 @@
+/* Style B — Bold: dark background, bright lime accent, big confident type. */
+:root {
+  --bg: #0d0f12;
+  --surface: #171a1f;
+  --bar-bg: rgba(13, 15, 18, .85);
+  --text: #f3f4f6;
+  --muted: #9aa3ad;
+  --accent: #c6f432;
+  --accent-text: #0d0f12;
+  --border: #262a31;
+  --border-strong: #3a404a;
+  --radius: 4px;
+  --photo-radius: 4px;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-head: "Arial Black", "Helvetica Neue", system-ui, sans-serif;
+  --head-spacing: -0.03em;
+  --hero-align: left;
+  --hero-margin: 0;
+  --hero-justify: flex-start;
+}

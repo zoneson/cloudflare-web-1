@@ -3,10 +3,149 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>My Website</title>
+  <title>Your Name — Engineer</title>
+  <meta name="description" content="I help small teams turn messy ideas into simple products people enjoy using.">
+
+  <!-- What shows up when someone shares your link on WhatsApp, LinkedIn, X, etc. -->
+  <meta property="og:title" content="Your Name — Engineer">
+  <meta property="og:description" content="I help small teams turn messy ideas into simple products people enjoy using.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="/images/share.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/base.css">
+  <link id="theme" rel="stylesheet" href="/css/theme-clean.css">
+  <!-- Preview only: index.html?style=bold swaps the theme. Delete once a style is chosen. -->
+  <script>
+    var style = new URLSearchParams(location.search).get('style');
+    if (style) document.getElementById('theme').href = '/css/theme-' + style + '.css';
+  </script>
 </head>
 <body>
-  <h1>Hello from Cloudflare!</h1>
-  <p>My first deployed website.</p>
+  <header class="topbar">
+    <a class="brand" href="#top">Your Name</a>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#work">Work</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="photo" aria-hidden="true">ZC</div>
+      <p class="eyebrow">Engineer · Based in Cupertino CA USA</p>
+      <h1>I help small teams turn messy ideas into simple products people enjoy using.</h1>
+      <p class="lead">Ten years of designing apps and websites for startups, schools and local businesses.
+        Currently open to new projects starting in December.</p>
+      <div class="actions">
+        <a class="button" href="#contact">Get in touch</a>
+        <a class="button ghost" href="#work">See my work</a>
+      </div>
+    </section>
+
+    <section class="stats" aria-label="At a glance">
+      <div><strong>10+</strong><span>years of experience</span></div>
+      <div><strong>40+</strong><span>projects delivered</span></div>
+      <div><strong>3</strong><span>languages spoken</span></div>
+    </section>
+
+    <section id="about">
+      <h2>About me</h2>
+      <div class="prose">
+        <p>I started out drawing posters for my school club and never stopped. Today I design
+          the screens, buttons and flows that make apps easy to use.</p>
+        <p>I like working closely with founders: we sit down, figure out what really matters to
+          your customers, and build the simplest thing that does it well.</p>
+        <p>Outside work you will find me hiking, cooking for friends, or teaching beginners how
+          to sketch.</p>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2>What I can help with</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>App &amp; website design</h3>
+          <p>Clear, good-looking screens that work on every phone and computer.</p>
+        </article>
+        <article class="card">
+          <h3>Making things easier to use</h3>
+          <p>I watch real people use your product and fix where they get stuck.</p>
+        </article>
+        <article class="card">
+          <h3>Brand look &amp; feel</h3>
+          <p>Logo, colors and fonts that make your business instantly recognizable.</p>
+        </article>
+        <article class="card">
+          <h3>Workshops &amp; coaching</h3>
+          <p>Hands-on sessions that teach your team to design with confidence.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="work">
+      <h2>Selected projects</h2>
+      <div class="projects">
+        <article class="project">
+          <p class="tag">Mobile app · 2025</p>
+          <h3>FreshCart grocery app</h3>
+          <p>Customers were giving up halfway through checkout. I cut it from six steps to two.</p>
+          <p class="result">Result: 32% more completed orders in the first month.</p>
+          <a href="#">Read the story →</a>
+        </article>
+        <article class="project">
+          <p class="tag">Website · 2024</p>
+          <h3>Riverside Dental clinic</h3>
+          <p>A friendly new website with online booking, so patients stop having to call.</p>
+          <p class="result">Result: half of all bookings now happen online.</p>
+          <a href="#">Read the story →</a>
+        </article>
+        <article class="project">
+          <p class="tag">Workshop · 2023</p>
+          <h3>Design basics for teachers</h3>
+          <p>A two-day course helping 120 teachers make clearer slides and handouts.</p>
+          <p class="result">Result: rated 4.9 out of 5 by attendees.</p>
+          <a href="#">Read the story →</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="kind-words">
+      <h2>What people say</h2>
+      <div class="grid">
+        <blockquote class="quote">
+          <p>“Working with Your Name felt easy from day one. Our customers noticed the difference
+            within a week.”</p>
+          <footer>— Mei Lin, Founder of FreshCart</footer>
+        </blockquote>
+        <blockquote class="quote">
+          <p>“Patient, clear and genuinely kind. Our whole team learned a lot.”</p>
+          <footer>— Dr. Raj Kumar, Riverside Dental</footer>
+        </blockquote>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <h2>Let’s work together</h2>
+      <p class="lead">Have a project in mind, or just want to say hello? Send me an email —
+        I usually reply within one working day.</p>
+      <div class="actions">
+        <a class="button" href="mailto:zoneson@gmail.com">zoneson@gmail.com</a>
+        <a class="button ghost" href="/resume.pdf">Download my résumé</a>
+      </div>
+      <ul class="links">
+        <li><a href="https://www.linkedin.com/in/your-name">LinkedIn</a></li>
+        <li><a href="https://github.com/your-name">GitHub</a></li>
+        <li><a href="https://x.com/your-name">X / Twitter</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 Your Name · Made with care in Cupertino, CA</p>
+  </footer>
 </body>
 </html>
