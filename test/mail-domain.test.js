@@ -78,6 +78,12 @@ test("true when DNS hangs past the timeout", async () => {
     timedOut = init.signal.reason?.name === "TimeoutError";
     reject(init.signal.reason);
   }));
-  assert.equal(await canReceiveMail("example.com", hang), true);
+  // AbortSignal.timeout's timer does not keep Node alive on its own.
+  const keepAlive = setInterval(() => {}, 1000);
+  try {
+    assert.equal(await canReceiveMail("example.com", hang), true);
+  } finally {
+    clearInterval(keepAlive);
+  }
   assert.equal(timedOut, true);
 });

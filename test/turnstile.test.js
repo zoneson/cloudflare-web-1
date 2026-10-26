@@ -76,5 +76,11 @@ test("false for an expired or reused token", async () => {
 
 test("gives up on a hanging siteverify after the timeout", async () => {
   const hang = (url, init) => new Promise((_, reject) => init.signal.addEventListener("abort", () => reject(init.signal.reason)));
-  await assert.rejects(verifyTurnstile("tok", "sec", null, hang), { name: "TimeoutError" });
+  // AbortSignal.timeout's timer does not keep Node alive on its own.
+  const keepAlive = setInterval(() => {}, 1000);
+  try {
+    await assert.rejects(verifyTurnstile("tok", "sec", null, hang), { name: "TimeoutError" });
+  } finally {
+    clearInterval(keepAlive);
+  }
 });
